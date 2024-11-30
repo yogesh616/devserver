@@ -1,10 +1,11 @@
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
+const getPuppeteer = require('./config')
 
 
  async function scrap(url) {
     try {
-        const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+        const browser = await getPuppeteer();
         const page = await browser.newPage();
         await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 });
 
@@ -45,7 +46,7 @@ const cheerio = require('cheerio');
 
  async function scrapArticle(url) {
     try {
-        const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+        const browser = await getPuppeteer();
         const page = await browser.newPage();
         await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 });
 
@@ -80,7 +81,7 @@ const cheerio = require('cheerio');
 
 async function getTags() {
     try {
-        const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+        const browser = await getPuppeteer();
         const page = await browser.newPage();
         await page.goto('https://dev.to/tags', { waitUntil: 'networkidle2', timeout: 60000 });
         
@@ -106,7 +107,7 @@ async function getTags() {
 async function getUserDetails(username) {
     let browser; // Declare browser outside the try block
     try {
-        browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+        browser = await getPuppeteer();
         const page = await browser.newPage();
         await page.goto(`https://dev.to/${username}/`, { waitUntil: 'networkidle2', timeout: 60000 });
 

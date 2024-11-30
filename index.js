@@ -22,17 +22,9 @@ app.use((err, req, res, next) => {
 app.use('/', router);
 
 app.get('/', (req, res) => {
-    res.sendFile(`${__dirname}/index.html`);
+    res.json({message: 'server is running!'});
 
 });
-
-
-
-
-
-
-
-
 
 
 
@@ -40,3 +32,4 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+module.exports = app;
